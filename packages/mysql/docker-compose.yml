@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sword-challenge
+      - MYSQL_USER=sword-user
+      - MYSQL_PASSWORD=sword-password
+      - MYSQL_ROOT_HOST=%
+    volumes:
+      - $HOME/Desktop/MySQL/sword-exercise.sql:/sword-exercise.sql
+    networks:
+      - intranet
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  ## Run the migration
+  flyway:
+    image: flyway/flyway:6.3.1
+    command: -url=jdbc:mysql://host.docker.internal:3306/sword-challenge -user=root -password=root migrate -connectRetries=100
+    volumes:
+      - ./sql_versions:/flyway/sql
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    driver: bridge
+
+volumes:
+  mysql:

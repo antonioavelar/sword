@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  msql:
+    extends:
+      file: ./packages/mysql/docker-compose.yml
+      service: mysql
+    expose:
+      - 3306
+
+  tasks-api:
+    extends:
+      file: ./packages/tasks-api/docker-compose.yml
+      service: tasks-api
+
+networks:
+  intranet:
+    driver: bridge
+
+volumes:
+  mysql:

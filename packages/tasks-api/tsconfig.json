@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "./dist",
+    "module": "commonjs",
+    "allowJs": true,
+    "noEmit": false,
+    "composite": true,
+    "baseUrl": "./src/",
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ]
+  },
+  "include": [
+    "./src/**/*",
+    "./config/**/*.json",
+  ]
+}

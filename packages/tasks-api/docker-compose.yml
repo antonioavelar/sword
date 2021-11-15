@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  tasks-api:
+    image: "node:lts-alpine"
+    user: "node:node"
+    working_dir: "/tasks-api"
+    command: ["yarn", "dev"]
+    stdin_open: true
+
+    networks:
+      - intranet
+    restart: on-failure
+    volumes:
+      - "./:/tasks-api:cached"
+    ports:
+      - "3000:3000"
+
+networks:
+  intranet:
