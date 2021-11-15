@@ -13,6 +13,7 @@ Its possible to override every single configuration on the application with env 
 ```
   yarn dev // starts docker compose
   yarn migrate // applies first time migration on the database
+  yarn test // test the application
 ```
 
 ## How to make it a prod ready project
@@ -23,3 +24,24 @@ Its possible to override every single configuration on the application with env 
 - Decouple database for each service and entity
 - Move from compose to a production ready orchestrator (K8s)
 - Add proper unit testing + intregration tests
+
+## Requests
+
+```
+// create tasks (manager) Bearer 1 is the token that bellongs to a user that exists on the database
+curl --location --request POST 'http://localhost:3000/tasks' \
+--header 'Authorization: Bearer 1' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "date":  "2011-10-05T14:48:00.000Z",
+    "summary": "a dummy summary"
+}'
+
+// get tasks (manager) Bearer 2 is the token that bellongs to the manager
+curl --location --request GET 'http://localhost:3000/tasks' \
+--header 'Authorization: Bearer 2'
+
+// get tasks (technician) Bearer 1 is the token that bellongs to the tech
+curl --location --request GET 'http://localhost:3000/tasks' \
+--header 'Authorization: Bearer 1'
+```
