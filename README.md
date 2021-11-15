@@ -1,6 +1,6 @@
 # Sword Challenge
 
-For several reasons i couldn't dedicate the time i wanted to this challenge. I've just completed the first 2 parts.
+For several reasons i couldn't dedicate the time i wanted to this challenge. I've just completed the first 2 parts with minimal unit tests as examples.
 
 This project in not production ready. With more time this is what i would do:
 
