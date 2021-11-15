@@ -18,6 +18,7 @@ Its possible to override every single configuration on the application with env 
 ## How to make it a prod ready project
 
 - Add logs, metrics, tracing and alerting
+- Add Cache
 - Perform NFTs to measure performance/pods needed
 - Decouple database for each service and entity
 - Move from compose to a production ready orchestrator (K8s)
